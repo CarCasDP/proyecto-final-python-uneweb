@@ -1,4 +1,5 @@
 from decimal import Decimal, InvalidOperation
+import datetime
 
 def is_decimal(s):
     try:
@@ -6,6 +7,11 @@ def is_decimal(s):
         return True
     except InvalidOperation:
         return False
+
+def format_check(date, fmt):
+    try: datetime.datetime.strptime(date, fmt)
+    except: return False
+    else: return True
 
 employees = []
 
@@ -22,6 +28,14 @@ def verify_float(x):
     verify_float(x)
   employees[x]['base-salary'] = float(employees[x]['base-salary'])
   employees[x]['base-salary'] = "{:.2f}".format(employees[x]['base-salary'])
+
+def verify_date(x):
+  employees[x]['entry-date'] = input()
+  if not(format_check(employees[x]['entry-date'], '%Y-%m-%d')):
+    print('El dato ingresado no posee el formato de fecha deseado "yyyy-mm-dd", por favor intentelo nuevamente:')
+    verify_date(x)
+  year, month, day = map(int, employees[x]['entry-date'].split('-')) # Verificar tipo de dato de "employees[x]['entry-date']"
+  employees[x]['entry-date'] = datetime.date(year, month, day)
 
 for x in range(0, 10):
   employees.append(
@@ -43,8 +57,8 @@ for x in range(0, 10):
   print('Por favor ingrese el sueldo base del empleado ' + str(x + 1) + ', colocandolo como un numero decimal de 2 cifras, especificando los números decimales con punto y no con coma:')
   verify_float(x)
 
-  print('Por favor ingrese la fecha de ingreso del empleado ' + str(x + 1) + ':')
-  employees[x]['entry-date'] = input()
+  print('Por favor ingrese la fecha de ingreso del empleado ' + str(x + 1) + ', en el siguiente formato "yyyy-mm-dd":')
+  verify_date(x)
 
   print('Por favor ingrese la cantidad de hijos del empleado ' + str(x + 1) + ':')
   employees[x]['number-of-children'] = input()
