@@ -34,6 +34,9 @@ def verify_date(x):
   if not(format_check(employees[x]['entry-date'], '%Y-%m-%d')):
     print('El dato ingresado no posee el formato de fecha deseado "yyyy-mm-dd", por favor intentelo nuevamente:')
     verify_date(x)
+  if (datetime.datetime.now().strftime("%Y-%m-%d") < employees[x]['entry-date']):
+    print('La fecha ingresada supera a la fecha actual:')
+    verify_date(x)
 
 for x in range(0, 10):
   employees.append(
