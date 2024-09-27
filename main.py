@@ -34,9 +34,6 @@ def verify_date(x):
   if not(format_check(employees[x]['entry-date'], '%Y-%m-%d')):
     print('El dato ingresado no posee el formato de fecha deseado "yyyy-mm-dd", por favor intentelo nuevamente:')
     verify_date(x)
-  print(employees[x]['entry-date'])
-  year, month, day = map(int, employees[x]['entry-date'].split('-'))
-  employees[x]['entry-date'] = datetime.date(year, month, day)
 
 for x in range(0, 10):
   employees.append(
@@ -48,7 +45,6 @@ for x in range(0, 10):
       'number-of-children': 0
     }
   )
-
 
   print('Por favor ingrese el nombre del empleado ' + str(x + 1) + ':')
   verify_str(x)
