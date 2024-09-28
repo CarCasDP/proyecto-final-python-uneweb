@@ -44,6 +44,12 @@ def verify_int(x):
     print('El dato ingresado no es un numero, por favor intentelo nuevamente:')
     verify_int(x)
 
+def verify_company(x):
+  employees[x]['company'] = input()
+  if employees[x]['company'] != '1' and employees[x]['company'] != '2':
+    print('El dato ingresado no es ni 1 ni 2, por favor intentelo nuevamente:')
+    verify_company(x)
+
 for x in range(0, 10):
   employees.append(
     {
@@ -51,7 +57,8 @@ for x in range(0, 10):
       'last-name': '',
       'base-salary': 0,
       'entry-date': '',
-      'number-of-children': 0
+      'number-of-children': 0,
+      'company': 0
     }
   )
 
@@ -69,5 +76,8 @@ for x in range(0, 10):
 
   print('Por favor ingrese la cantidad de hijos del empleado ' + str(x + 1) + ':')
   verify_int(x)
+
+  print('Por favor ingrese a qué empresa pertenece, ingrese 1 si pertenece a la primera empresa que cobra un 12% de base imponible o 2 si pertenece a la segunda empresa que cobra un 11.4% de base imponible de empleado' + str(x + 1) + ':')
+  verify_company(x)
 
 print(employees)
