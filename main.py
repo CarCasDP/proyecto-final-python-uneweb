@@ -38,6 +38,12 @@ def verify_date(x):
     print('La fecha ingresada supera a la fecha actual:')
     verify_date(x)
 
+def verify_int(x):
+  employees[x]['number-of-children'] = input()
+  if not(employees[x]['number-of-children'].isnumeric()):
+    print('El dato ingresado no es un numero, por favor intentelo nuevamente:')
+    verify_int(x)
+
 for x in range(0, 10):
   employees.append(
     {
@@ -62,6 +68,6 @@ for x in range(0, 10):
   verify_date(x)
 
   print('Por favor ingrese la cantidad de hijos del empleado ' + str(x + 1) + ':')
-  employees[x]['number-of-children'] = input()
+  verify_int(x)
 
 print(employees)
