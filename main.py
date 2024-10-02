@@ -89,6 +89,20 @@ for x in range(0, 1):
   print('Por favor ingrese a qué empresa pertenece, ingrese 1 si pertenece a la primera empresa que cobra un 12% de base imponible o 2 si pertenece a la segunda empresa que cobra un 11.4% de base imponible de empleado' + str(x + 1) + ':')
   verify_company(x)
 
-  print('La base imponible del empleado ' + str(x + 1) + 'es: ' + str(employees[x]['base-salary'] + diff_month(x)))
+  print('La base imponible del empleado ' + str(x + 1) + 'es: '
+  + str(
+    employees[x]['base-salary']
+  + (
+    employees[x]['base-salary'] * float((diff_month(x) / 100))
+    )
+  + (
+    employees[x]['base-salary'] * float(
+      (
+        employees[x]['number-of-children'] * 5
+      )
+      / 100)
+    )
+  )
+  )
 
 # print(employees)
