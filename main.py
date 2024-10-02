@@ -50,7 +50,16 @@ def verify_company(x):
     print('El dato ingresado no es ni 1 ni 2, por favor intentelo nuevamente:')
     verify_company(x)
 
-for x in range(0, 10):
+def diff_month(x):
+  start = employees[x]['entry-date']
+  end = datetime.datetime.now().strftime("%Y-%m-%d")
+
+  s_date = datetime.datetime.strptime(start, "%Y-%m-%d")
+  e_date = datetime.datetime.strptime(end, "%Y-%m-%d")
+
+  return (e_date.year - s_date.year) * 12 + e_date.month - s_date.month
+
+for x in range(0, 1):
   employees.append(
     {
       'first-name': '',
@@ -80,4 +89,6 @@ for x in range(0, 10):
   print('Por favor ingrese a qué empresa pertenece, ingrese 1 si pertenece a la primera empresa que cobra un 12% de base imponible o 2 si pertenece a la segunda empresa que cobra un 11.4% de base imponible de empleado' + str(x + 1) + ':')
   verify_company(x)
 
-print(employees)
+  print('La base imponible del empleado ' + str(x + 1) + 'es: ' + str(employees[x]['base-salary'] + diff_month(x)))
+
+# print(employees)
