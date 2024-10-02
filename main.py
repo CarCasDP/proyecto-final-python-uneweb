@@ -13,10 +13,10 @@ for x in range(0, 10):
   )
 
   print('Por favor ingrese el nombre del empleado ' + str(x + 1) + ':')
-  verify_str(x)
+  verify_fname(x)
 
   print('Por favor ingrese el apellido del empleado ' + str(x + 1) + ':')
-  verify_str(x)
+  verify_lname(x)
 
   print('Por favor ingrese el sueldo base del empleado ' + str(x + 1) + ', colocandolo como un numero decimal de 2 cifras, especificando los números decimales con punto y no con coma:')
   verify_float(x)

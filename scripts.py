@@ -16,11 +16,17 @@ def format_check(date, fmt):
 
 employees = []
 
-def verify_str(x):
+def verify_fname(x):
   employees[x]['first-name'] = input()
   if not(employees[x]['first-name'].isalpha()):
     print('El dato ingresado no es una cadena de texto, por favor intentelo nuevamente:')
-    verify_str(x)
+    verify_fname(x)
+
+def verify_lname(x):
+  employees[x]['last-name'] = input()
+  if not(employees[x]['last-name'].isalpha()):
+    print('El dato ingresado no es una cadena de texto, por favor intentelo nuevamente:')
+    verify_lname(x)
 
 def verify_float(x):
   employees[x]['base-salary'] = input()
