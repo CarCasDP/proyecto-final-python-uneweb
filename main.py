@@ -60,14 +60,17 @@ def diff_month(x):
   return (e_date.year - s_date.year) * 12 + e_date.month - s_date.month
 
 def calculate_tax_base(x):
-  return float(employees[x]['base-salary']) + (float(employees[x]['base-salary']) * (diff_month(x) / 100)) + (float(employees[x]['base-salary']) * ((float(employees[x]['number-of-children']) * 5) / 100))
+  return "{:.2f}".format(float(employees[x]['base-salary']) + (float(employees[x]['base-salary']) * (diff_month(x) / 100)) + (float(employees[x]['base-salary']) * ((float(employees[x]['number-of-children']) * 5) / 100)))
 
 def calculate_tax_health(x):
-  return "{:.2f}".format(calculate_tax_base(x) * 0.07)
+  return "{:.2f}".format(float(calculate_tax_base(x)) * 0.07)
 
 def calculate_tax_SSO(x):
   tax = 0.12 if employees[x]['company'] == '1' else 0.114
-  return "{:.2f}".format(calculate_tax_base(x) * tax)
+  return "{:.2f}".format(float(calculate_tax_base(x)) * tax)
+
+def average_pay(x):
+  return float(calculate_tax_base(x)) - float(calculate_tax_health(x)) - float(calculate_tax_SSO(x))
 
 for x in range(0, 1):
   employees.append(
@@ -99,6 +102,6 @@ for x in range(0, 1):
   print('Por favor ingrese a qué empresa pertenece, ingrese 1 si pertenece a la primera empresa que cobra un 12% de base imponible o 2 si pertenece a la segunda empresa que cobra un 11.4% de base imponible de empleado ' + str(x + 1) + ':')
   verify_company(x)
 
-  print('La base imponible del empleado ' + str(x + 1) + ' es: ' + str(calculate_tax_base(x)) + '. Además debe pagar ' + str(calculate_tax_health(x)) + ' en salud y ' + str(calculate_tax_SSO(x)) + ' en gastos a su afiliacion con la empresa ' + str(employees[x]['company']) + ' de SSO. En promedio, el empleado cobrara: ') #+ str())
+  print('La base imponible del empleado ' + str(x + 1) + ' es: ' + str(calculate_tax_base(x)) + '. Además debe pagar ' + str(calculate_tax_health(x)) + ' en salud y ' + str(calculate_tax_SSO(x)) + ' en gastos a su afiliacion con la empresa ' + str(employees[x]['company']) + ' de SSO. En promedio, el empleado cobrara: ' + str(average_pay(x)))
 
 # print(employees)
