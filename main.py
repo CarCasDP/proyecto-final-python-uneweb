@@ -1,6 +1,6 @@
 from scripts import *
 
-for x in range(0, 1):
+for x in range(0, 10):
   employees.append(
     {
       'first-name': '',
