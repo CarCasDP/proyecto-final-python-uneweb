@@ -65,6 +65,10 @@ def calculate_tax_base(x):
 def calculate_tax_health(x):
   return "{:.2f}".format(calculate_tax_base(x) * 0.07)
 
+def calculate_tax_SSO(x):
+  tax = 0.12 if employees[x]['company'] == '1' else 0.114
+  return "{:.2f}".format(calculate_tax_base(x) * tax)
+
 for x in range(0, 1):
   employees.append(
     {
@@ -92,9 +96,9 @@ for x in range(0, 1):
   print('Por favor ingrese la cantidad de hijos del empleado ' + str(x + 1) + ':')
   verify_int(x)
 
-  #print('Por favor ingrese a qué empresa pertenece, ingrese 1 si pertenece a la primera empresa que cobra un 12% de base imponible o 2 si pertenece a la segunda empresa que cobra un 11.4% de base imponible de empleado ' + str(x + 1) + ':')
-  #verify_company(x)
+  print('Por favor ingrese a qué empresa pertenece, ingrese 1 si pertenece a la primera empresa que cobra un 12% de base imponible o 2 si pertenece a la segunda empresa que cobra un 11.4% de base imponible de empleado ' + str(x + 1) + ':')
+  verify_company(x)
 
-  print('La base imponible del empleado ' + str(x + 1) + ' es: ' + str(calculate_tax_base(x)) + '. Además debe pagar ' + str(calculate_tax_health(x)) + ' en salud y ') #+ str() + 'en gastos a su afiliacion con la empresa ' + str(employees[x]['company']) + ' de SSO. En promedio, el empleado cobrara: ' + str())
+  print('La base imponible del empleado ' + str(x + 1) + ' es: ' + str(calculate_tax_base(x)) + '. Además debe pagar ' + str(calculate_tax_health(x)) + ' en salud y ' + str(calculate_tax_SSO(x)) + ' en gastos a su afiliacion con la empresa ' + str(employees[x]['company']) + ' de SSO. En promedio, el empleado cobrara: ') #+ str())
 
 # print(employees)
