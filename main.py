@@ -59,6 +59,9 @@ def diff_month(x):
 
   return (e_date.year - s_date.year) * 12 + e_date.month - s_date.month
 
+def calculate_tax_base(x):
+  return float(employees[x]['base-salary']) + (float(employees[x]['base-salary']) * (diff_month(x) / 100)) + (float(employees[x]['base-salary']) * ((float(employees[x]['number-of-children']) * 5) / 100))
+
 for x in range(0, 1):
   employees.append(
     {
@@ -71,11 +74,11 @@ for x in range(0, 1):
     }
   )
 
-  print('Por favor ingrese el nombre del empleado ' + str(x + 1) + ':')
-  verify_str(x)
+  #print('Por favor ingrese el nombre del empleado ' + str(x + 1) + ':')
+  #verify_str(x)
 
-  print('Por favor ingrese el apellido del empleado ' + str(x + 1) + ':')
-  verify_str(x)
+  #print('Por favor ingrese el apellido del empleado ' + str(x + 1) + ':')
+  #verify_str(x)
 
   print('Por favor ingrese el sueldo base del empleado ' + str(x + 1) + ', colocandolo como un numero decimal de 2 cifras, especificando los números decimales con punto y no con coma:')
   verify_float(x)
@@ -86,23 +89,9 @@ for x in range(0, 1):
   print('Por favor ingrese la cantidad de hijos del empleado ' + str(x + 1) + ':')
   verify_int(x)
 
-  print('Por favor ingrese a qué empresa pertenece, ingrese 1 si pertenece a la primera empresa que cobra un 12% de base imponible o 2 si pertenece a la segunda empresa que cobra un 11.4% de base imponible de empleado' + str(x + 1) + ':')
-  verify_company(x)
+  #print('Por favor ingrese a qué empresa pertenece, ingrese 1 si pertenece a la primera empresa que cobra un 12% de base imponible o 2 si pertenece a la segunda empresa que cobra un 11.4% de base imponible de empleado ' + str(x + 1) + ':')
+  #verify_company(x)
 
-  print('La base imponible del empleado ' + str(x + 1) + 'es: '
-  + str(
-    employees[x]['base-salary']
-  + (
-    employees[x]['base-salary'] * float((diff_month(x) / 100))
-    )
-  + (
-    employees[x]['base-salary'] * float(
-      (
-        employees[x]['number-of-children'] * 5
-      )
-      / 100)
-    )
-  )
-  )
+  print('La base imponible del empleado ' + str(x + 1) + ' es: ' + str(calculate_tax_base(x)))
 
 # print(employees)
